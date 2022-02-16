@@ -11,15 +11,41 @@
     <header class="main-header"></header>
 
     <body class="body">
+      <div class="controls-container">
         <label for="text-input">Add Text:</label>
-        <input type="text" id="text-input" name="text-input" placeholder="Enter Text Here">
+        <input
+          type="text"
+          id="text-input"
+          name="text-input"
+          placeholder="Enter Text Here"
+        />
         <button onclick="onAddText()">Add!</button>
+        <br />
+        <label for="color">Change Color:</label>
+        <input
+          onchange="onUpdateColor(this.value)"
+          id="color"
+          name="color"
+          type="color"
+        />
+        <br />
+        <label for="size">Change Size:</label>
+        <input
+          onchange="onUpdateSize(this.value)"
+          id="size"
+          name="size"
+          type="range"
+          max="110"
+          min="10"
+        />
+        <br>
+        <button onclick="onSwitchLine()">Switch Line</button>
+      </div>
       <div class="canvas-container">
         <canvas id="my-canvas" height="500" width="500"></canvas>
       </div>
 
-      <div class="meme-selector-container">
-      </div>
+      <div class="meme-selector-container"></div>
     </body>
     <script src="js/services/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>

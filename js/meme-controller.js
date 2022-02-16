@@ -4,13 +4,11 @@ var gCanvas = document.getElementById("my-canvas");
 var gCtx = gCanvas.getContext("2d");
 
 function renderMeme() {
-  const meme = getMeme();
-  console.log(meme.lines[0].txt);
-  // var { img } = getCanvas()
+  var meme = getMeme();
   var img = new Image();
   img.onload = () => {
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
-    drawText(meme.lines[0].txt, 50, 50);
+    meme.lines.forEach(line => drawText(line));
   };
   img.src = `images/${meme.selectedImgId}.jpg`;
 }
@@ -23,11 +21,40 @@ function onAddText() {
   renderMeme();
 }
 
-function drawText(text, x, y) {
-  gCtx.lineWidth = 1;
-  gCtx.strokeStyle = "black";
-  gCtx.fillStyle = "blue";
-  gCtx.font = "50px Arial";
+function onUpdateSize(newSize) {
+  updateSize(newSize);
+  renderMeme();
+}
+
+function onUpdateColor(newColor) {
+  updateColor(newColor);
+  renderMeme();
+}
+
+function onSwitchLine(){
+    switchLine()
+}
+
+function drawText(line) {
+  var text = line.txt;
+  console.log(text);
+  var x = getX(line)
+  var y = line.y; // maybe change later to fx that determines from service
+  // based on how many lines there are, otherwise set on create
+//   var font = 
+  gCtx.lineWidth = 2;
+  gCtx.strokeStyle = line.stroke;
+  gCtx.fillStyle = line.fill;
+  gCtx.font = `${line.size}px ${line.font}`;
   gCtx.fillText(text, x, y);
   gCtx.strokeText(text, x, y);
 }
+
+function getX(line){
+    // if currLine.align === 
+    var text = line.txt
+    if (gCtx.measureText(text).width >= gCanvas.width) return 20
+    else return gCanvas.width / 2 - gCtx.measureText(text).width / 2;
+}
+
+
