@@ -17,22 +17,33 @@ function onAddText() {
   var elText = document.querySelector("input[name=text-input]");
   var text = elText.value;
   setLineTxt(text);
-  document.getElementById("text-input").value = "";
   renderMeme();
 }
 
-function onUpdateSize(newSize) {
-  updateSize(newSize);
-  renderMeme();
+function onUpdateTextSize(newSize) {
+    updateTextSize(newSize);
+    renderMeme();
 }
 
 function onUpdateColor(newColor) {
-  updateColor(newColor);
-  renderMeme();
+    updateColor(newColor);
+    renderMeme();
 }
 
 function onSwitchLine(){
     switchLine()
+    var text = getTextForInput()
+    var color = getColorForInput()
+    var textSize= getTextSizeForInput()
+    document.getElementById("text-input").value = text;
+    document.getElementById("color").value = color;
+    document.getElementById("size").value = textSize;
+}
+
+function onAddLine(){
+    addLine()
+    makeLineIdxTheNewLine() // check order here
+    renderMeme()
 }
 
 function drawText(line) {

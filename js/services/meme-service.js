@@ -1,5 +1,7 @@
 "use strict";
 
+var gCanvas = document.getElementById("my-canvas");
+
 var gImages = [
     {id: 1, url: 'images/1.jpg', keywords: ['funny', 'politics', 'crazy', 'angry']},
     {id: 2, url: 'images/2.jpg', keywords: ['funny', 'animals', 'cute', 'sweet']},
@@ -34,22 +36,35 @@ var gMeme = {
             stroke: 'black',
             y: 100
 
-        },
-        {
-            txt: '',
-            size: 50,
-            font: 'Impact',
-            align: 'center',
-            fill: 'white',
-            stroke: 'black',
-            y: 400
-
-        },
+        }
     ]
 }
 
-function updateSize(newSize){
-    gMeme.lines[gMeme.selectedLineIdx].size = newSize
+function addLine(){
+    var newLine = {
+        txt: '',
+        size: 50,
+        font: 'Impact',
+        align: 'center',
+        fill: 'white',
+        stroke: 'black',
+        y: setY()
+    }
+    gCanvas.push(newLine)
+}
+
+function makeLineIdxTheNewLine(){
+
+}
+
+function setY(){
+    if (!gMeme.lines.length) return 100
+    if (gMeme.lines.length === 1) return gCanvas.height - 100
+    if (gMeme.lines.length > 1) return gCanvas.height / 2
+}
+
+function updateTextSize(newTextSize){
+    gMeme.lines[gMeme.selectedLineIdx].size = newTextSize
 }
 
 function updateColor(newColor){
@@ -61,7 +76,17 @@ function switchLine(){
     gMeme.selectedLineIdx = 0 : gMeme.selectedLineIdx++
 }
 
+function getTextForInput(){
+    return gMeme.lines[gMeme.selectedLineIdx].txt
+}
 
+function getColorForInput(){
+    return gMeme.lines[gMeme.selectedLineIdx].color
+}
+
+function getTextSizeForInput(){
+    return gMeme.lines[gMeme.selectedLineIdx].size
+}
 
 function getMeme() {
   return gMeme;

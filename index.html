@@ -10,20 +10,28 @@
   <body onload="onInit()">
     <header class="main-header"></header>
 
-    <body class="body">
+    <body class="body flex">
+
+      <div class="canvas-container">
+        <canvas id="my-canvas" height="500" width="500"></canvas>
+      </div>
+
       <div class="controls-container">
-        <label for="text-input">Add Text:</label>
+        <label for="text-input">Text:</label>
         <input
           type="text"
           id="text-input"
           name="text-input"
           placeholder="Enter Text Here"
+          oninput="onAddText()"
+          
         />
-        <button onclick="onAddText()">Add!</button>
+        <br>
+        <button onclick="onAddLine()">Add A New Line!</button>
         <br />
         <label for="color">Change Color:</label>
         <input
-          onchange="onUpdateColor(this.value)"
+          oninput="onUpdateColor(this.value)"
           id="color"
           name="color"
           type="color"
@@ -31,18 +39,15 @@
         <br />
         <label for="size">Change Size:</label>
         <input
-          onchange="onUpdateSize(this.value)"
+          onchange="onUpdateTextSize(this.value)"
           id="size"
           name="size"
           type="range"
-          max="110"
-          min="10"
+          max="80"
+          min="20"
         />
-        <br>
+        <br />
         <button onclick="onSwitchLine()">Switch Line</button>
-      </div>
-      <div class="canvas-container">
-        <canvas id="my-canvas" height="500" width="500"></canvas>
       </div>
 
       <div class="meme-selector-container"></div>
