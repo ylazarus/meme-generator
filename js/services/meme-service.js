@@ -44,7 +44,7 @@ var gMeme = {
   selectedLineIdx: 0,
   lines: [
     {
-      txt: " ",
+      txt: "",
       size: 50,
       font: "Impact",
       align: "center",
@@ -57,7 +57,7 @@ var gMeme = {
 
 function addLine() {
   var newLine = {
-    txt: " ",
+    txt: "",
     size: 50,
     font: "Impact",
     align: "center",
