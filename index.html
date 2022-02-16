@@ -26,6 +26,7 @@
         />
         <br />
         <button onclick="onAddLine()">Add A New Line!</button>
+        <button onclick="onRemoveCurrLine()">Remove Current Line</button>
         <br />
         <label for="color">Change Color:</label>
         <input
@@ -45,12 +46,23 @@
           max="80"
           min="20"
         />
+        <label for="font">Select Font:</label>
+        <select name="font" id="font" onchange="onUpdateFont(this.value)">
+            <option>Impact</option>
+            <option>Papyrus</option>
+            <option>Lucida Console</option>
+            <option>Lucida Handwriting</option>
+            <option>Copperplate</option>
+        </select>
         <br />
-        <button onclick="onUpdateAlignment('left')">align-left</button>
-        <button onclick="onUpdateAlignment('center')">align-center</button>
-        <button onclick="onUpdateAlignment('right')">align-right</button>
+        <button onclick="onUpdateAlignment('left')">Align-Left</button>
+        <button onclick="onUpdateAlignment('center')">Align-Center</button>
+        <button onclick="onUpdateAlignment('right')">Align-Right</button>
         <br />
         <button onclick="onSwitchLine()">Switch Line</button>
+        <br>
+        <button onclick="onMoveLineDown()">Move Line Down</button>
+        <button onclick="onMoveLineUp()">Move Line Up</button>
       </div>
 
       <div class="meme-selector-container"></div>

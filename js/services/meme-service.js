@@ -44,7 +44,7 @@ var gMeme = {
   selectedLineIdx: 0,
   lines: [
     {
-      txt: "",
+      txt: " ",
       size: 50,
       font: "Impact",
       align: "center",
@@ -57,7 +57,7 @@ var gMeme = {
 
 function addLine() {
   var newLine = {
-    txt: "",
+    txt: " ",
     size: 50,
     font: "Impact",
     align: "center",
@@ -68,7 +68,11 @@ function addLine() {
   gMeme.lines.push(newLine);
 }
 
-function makeLineIdxTheNewLine() {
+function removeCurrLine() {
+  gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+}
+
+function makeLineIdxTheLastLine() {
   gMeme.selectedLineIdx = gMeme.lines.length - 1;
 }
 
@@ -76,6 +80,14 @@ function setY() {
   if (!gMeme.lines.length) return 100;
   if (gMeme.lines.length === 1) return gCanvas.height - 100;
   if (gMeme.lines.length > 1) return gCanvas.height / 2;
+}
+
+function moveLineUp() {
+  gMeme.lines[gMeme.selectedLineIdx].y -= 10;
+}
+
+function moveLineDown() {
+  gMeme.lines[gMeme.selectedLineIdx].y += 10;
 }
 
 function updateTextSize(newTextSize) {
@@ -86,8 +98,12 @@ function updateColor(newColor) {
   gMeme.lines[gMeme.selectedLineIdx].fill = newColor;
 }
 
-function updateAlignment(direction){
-    gMeme.lines[gMeme.selectedLineIdx].align = direction
+function updateAlignment(direction) {
+  gMeme.lines[gMeme.selectedLineIdx].align = direction;
+}
+
+function updateFont(newFont) {
+  gMeme.lines[gMeme.selectedLineIdx].font = newFont;
 }
 
 function switchLine() {
@@ -110,6 +126,10 @@ function getTextSizeForInput() {
 
 function getMeme() {
   return gMeme;
+}
+
+function getLines() {
+  return gMeme.lines;
 }
 
 function setLineTxt(text) {

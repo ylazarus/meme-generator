@@ -20,6 +20,11 @@ function onAddText() {
   renderMeme();
 }
 
+function onUpdateFont(newFont){
+    updateFont(newFont)
+    renderMeme()
+}
+
 function onUpdateTextSize(newSize) {
   updateTextSize(newSize);
   renderMeme();
@@ -35,6 +40,16 @@ function onSwitchLine() {
   renderCurrentSettings();
 }
 
+function onMoveLineUp(){
+    moveLineUp()
+    renderMeme()
+}
+
+function onMoveLineDown(){
+    moveLineDown()
+    renderMeme()
+}
+
 function renderCurrentSettings() {
   var text = getTextForInput();
   var color = getColorForInput();
@@ -46,7 +61,20 @@ function renderCurrentSettings() {
 
 function onAddLine() {
   addLine();
-  makeLineIdxTheNewLine(); // check order here
+  makeLineIdxTheLastLine(); // check order here
+  renderCurrentSettings();
+  renderMeme();
+}
+
+function onRemoveCurrLine() {
+  removeCurrLine();
+  var lines = getLines();
+  console.log(lines);
+  if (lines.length > 0) {
+    makeLineIdxTheLastLine();
+  } else {
+    addLine();
+  }
   renderCurrentSettings();
   renderMeme();
 }
@@ -58,12 +86,8 @@ function onUpdateAlignment(direction) {
 
 function drawText(line) {
   var text = line.txt;
-  console.log(text);
   var x = setX(line);
-  var y = line.y; // maybe change later to fx that determines from service
-  // based on how many lines there are, otherwise set on create
-  //   var font =
-  gCtx.lineWidth = 2;
+  var y = line.y;
   gCtx.strokeStyle = line.stroke;
   gCtx.fillStyle = line.fill;
   gCtx.font = `${line.size}px ${line.font}`;
@@ -83,3 +107,12 @@ function setAlignment(line) {
   else if (line.align === "left") return "left";
   else return "right";
 }
+
+// function drawRect(x, y, line) {
+//     gCtx.beginPath()
+//     gCtx.rect(x - 10, y - 10, line.width + 20, line.height + 20)
+//     gCtx.fillStyle = 'orange'
+//     gCtx.fillRect(x, y, 150, 150)
+//     gCtx.strokeStyle = 'black'
+//     gCtx.stroke()
+//   }
