@@ -1,7 +1,22 @@
 "use strict";
 
-var gCanvas = document.getElementById("my-canvas");
-var gCtx = gCanvas.getContext("2d");
+//add download and share
+//highlight for selected?
+//design
+//drag and drop
+
+
+var gCanvas 
+var gCtx 
+
+function onInit() {
+    gCanvas = document.getElementById("my-canvas");
+    gCtx = gCanvas.getContext("2d");
+
+    addListeners()
+    renderGallery();
+
+  }
 
 function renderMeme() {
   var meme = getMeme();
@@ -11,6 +26,37 @@ function renderMeme() {
     meme.lines.forEach((line) => drawText(line));
   };
   img.src = `images/${meme.selectedImgId}.jpg`;
+}
+
+function addListeners() {
+    addMouseListeners()
+    addTouchListeners()
+}
+
+function addMouseListeners() {
+    gCanvas.addEventListener('mousemove', onMove)
+    gCanvas.addEventListener('mousedown', onDown)
+    gCanvas.addEventListener('mouseup', onUp)
+}
+
+function addTouchListeners() {
+    gCanvas.addEventListener('touchmove', onMove)
+    gCanvas.addEventListener('touchstart', onDown)
+    gCanvas.addEventListener('touchend', onUp)
+}
+
+function onDown(){
+    console.log('down');
+}
+
+function onUp(){
+    console.log('up');
+
+}
+
+function onMove(){
+    console.log('move');
+    
 }
 
 function onAddText() {
@@ -85,28 +131,23 @@ function onUpdateAlignment(direction) {
 }
 
 function drawText(line) {
-  var text = line.txt;
-  var x = setX(line);
+  var x = line.x;
   var y = line.y;
   gCtx.strokeStyle = line.stroke;
   gCtx.fillStyle = line.fill;
   gCtx.font = `${line.size}px ${line.font}`;
-  gCtx.textAlign = setAlignment(line);
-  gCtx.fillText(text, x, y);
-  gCtx.strokeText(text, x, y);
+  gCtx.textAlign = line.align;
+  gCtx.fillText(line.txt, x, y);
+  gCtx.strokeText(line.txt, x, y);
 }
 
-function setX(line) {
-  if (line.align === "center") return gCanvas.width / 2;
-  else if (line.align === "left") return 20;
-  else return gCanvas.width - 20;
-}
+// function setX(line) {
+//   if (line.align === "center") return gCanvas.width / 2;
+//   else if (line.align === "left") return 20;
+//   else return gCanvas.width - 20;
+// }
 
-function setAlignment(line) {
-  if (line.align === "center") return "center";
-  else if (line.align === "left") return "left";
-  else return "right";
-}
+
 
 // function drawRect(x, y, line) {
 //     gCtx.beginPath()

@@ -51,6 +51,9 @@ var gMeme = {
       fill: "#ffffff",
       stroke: "black",
       y: 100,
+      x: gCanvas.width / 2,
+      isDrag: false,
+      isFocus: false,
     },
   ],
 };
@@ -63,9 +66,16 @@ function addLine() {
     align: "center",
     fill: "#ffffff",
     stroke: "black",
-    y: setY(),
+    y: _setY(),
+    x: gCanvas.width / 2,
+    isDrag: false,
+    isFocus: false,
   };
   gMeme.lines.push(newLine);
+}
+
+function setTextFocus(value) {
+  gMeme.lines[gMeme.selectedLineIdx].isFocus = value;
 }
 
 function removeCurrLine() {
@@ -76,7 +86,16 @@ function makeLineIdxTheLastLine() {
   gMeme.selectedLineIdx = gMeme.lines.length - 1;
 }
 
-function setY() {
+function setX() {
+    var align = gMeme.lines[gMeme.selectedLineIdx].align
+    var x
+  if (align === "right") x = gCanvas.width - 20;
+  else if (align === "left") x = 20;
+  else x = gCanvas.width / 2;
+  gMeme.lines[gMeme.selectedLineIdx].x = x
+}
+
+function _setY() {
   if (!gMeme.lines.length) return 100;
   if (gMeme.lines.length === 1) return gCanvas.height - 100;
   if (gMeme.lines.length > 1) return gCanvas.height / 2;
@@ -100,6 +119,7 @@ function updateColor(newColor) {
 
 function updateAlignment(direction) {
   gMeme.lines[gMeme.selectedLineIdx].align = direction;
+  setX();
 }
 
 function updateFont(newFont) {
