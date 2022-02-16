@@ -11,15 +11,18 @@
     <header class="main-header"></header>
 
     <body class="body">
+        <label for="text-input">Add Text:</label>
+        <input type="text" id="text-input" name="text-input" placeholder="Enter Text Here">
+        <button onclick="onAddText()">Add!</button>
       <div class="canvas-container">
         <canvas id="my-canvas" height="500" width="500"></canvas>
       </div>
 
       <div class="meme-selector-container">
-
       </div>
     </body>
     <script src="js/services/meme-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
     <script src="js/meme-controller.js"></script>
   </body>
 </html>

@@ -1,22 +1,26 @@
 "use strict";
 
-var gCanvas;
-var gCtx;
-
-function onInit() {
-  gCanvas = document.getElementById("my-canvas");
-  gCtx = gCanvas.getContext("2d");
-  renderMeme();
-}
+var gCanvas = document.getElementById("my-canvas");
+var gCtx = gCanvas.getContext("2d");
 
 function renderMeme() {
+  const meme = getMeme();
+  console.log(meme.lines[0].txt);
   // var { img } = getCanvas()
   var img = new Image();
   img.onload = () => {
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
-    drawText("hello world", 250, 250);
+    drawText(meme.lines[0].txt, 50, 50);
   };
-  img.src = "images/2.jpg";
+  img.src = `images/${meme.selectedImgId}.jpg`;
+}
+
+function onAddText() {
+  var elText = document.querySelector("input[name=text-input]");
+  var text = elText.value;
+  setLineTxt(text);
+  document.getElementById("text-input").value = "";
+  renderMeme();
 }
 
 function drawText(text, x, y) {
