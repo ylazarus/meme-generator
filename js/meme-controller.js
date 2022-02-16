@@ -8,7 +8,7 @@ function renderMeme() {
   var img = new Image();
   img.onload = () => {
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
-    meme.lines.forEach(line => drawText(line));
+    meme.lines.forEach((line) => drawText(line));
   };
   img.src = `images/${meme.selectedImgId}.jpg`;
 }
@@ -21,51 +21,65 @@ function onAddText() {
 }
 
 function onUpdateTextSize(newSize) {
-    updateTextSize(newSize);
-    renderMeme();
+  updateTextSize(newSize);
+  renderMeme();
 }
 
 function onUpdateColor(newColor) {
-    updateColor(newColor);
-    renderMeme();
+  updateColor(newColor);
+  renderMeme();
 }
 
-function onSwitchLine(){
-    switchLine()
-    var text = getTextForInput()
-    var color = getColorForInput()
-    var textSize= getTextSizeForInput()
-    document.getElementById("text-input").value = text;
-    document.getElementById("color").value = color;
-    document.getElementById("size").value = textSize;
+function onSwitchLine() {
+  switchLine();
+  renderCurrentSettings();
 }
 
-function onAddLine(){
-    addLine()
-    makeLineIdxTheNewLine() // check order here
-    renderMeme()
+function renderCurrentSettings() {
+  var text = getTextForInput();
+  var color = getColorForInput();
+  var textSize = getTextSizeForInput();
+  document.getElementById("text-input").value = text;
+  document.getElementById("color").value = color;
+  document.getElementById("size").value = textSize;
+}
+
+function onAddLine() {
+  addLine();
+  makeLineIdxTheNewLine(); // check order here
+  renderCurrentSettings();
+  renderMeme();
+}
+
+function onUpdateAlignment(direction) {
+  updateAlignment(direction);
+  renderMeme();
 }
 
 function drawText(line) {
   var text = line.txt;
   console.log(text);
-  var x = getX(line)
+  var x = setX(line);
   var y = line.y; // maybe change later to fx that determines from service
   // based on how many lines there are, otherwise set on create
-//   var font = 
+  //   var font =
   gCtx.lineWidth = 2;
   gCtx.strokeStyle = line.stroke;
   gCtx.fillStyle = line.fill;
   gCtx.font = `${line.size}px ${line.font}`;
+  gCtx.textAlign = setAlignment(line);
   gCtx.fillText(text, x, y);
   gCtx.strokeText(text, x, y);
 }
 
-function getX(line){
-    // if currLine.align === 
-    var text = line.txt
-    if (gCtx.measureText(text).width >= gCanvas.width) return 20
-    else return gCanvas.width / 2 - gCtx.measureText(text).width / 2;
+function setX(line) {
+  if (line.align === "center") return gCanvas.width / 2;
+  else if (line.align === "left") return 20;
+  else return gCanvas.width - 20;
 }
 
-
+function setAlignment(line) {
+  if (line.align === "center") return "center";
+  else if (line.align === "left") return "left";
+  else return "right";
+}
