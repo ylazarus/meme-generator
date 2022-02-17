@@ -15,7 +15,9 @@ function onInit() {
 
   addListeners();
   renderGallery();
+  
 }
+
 
 function renderMeme() {
   var meme = getMeme();
@@ -64,18 +66,18 @@ function setBeginningOfLine(x, width, line) {
   else return x - width / 2;
 }
 
-function onRemoveSelectForSaveUpload(){
-    removeSelect()
-    renderMeme()
+function onRemoveSelectForSaveUpload() {
+  removeSelect();
+  renderMeme();
 }
 
 function onDown(ev) {
   const pos = getEvPos(ev);
   var lineID = textClicked(pos);
   if (lineID) setClickedSelected(lineID);
-  else removeSelect()
-renderMeme();
-renderCurrentSettings();
+  else removeSelect();
+  renderMeme();
+  renderCurrentSettings();
 }
 
 // add focuser on text input
@@ -97,11 +99,11 @@ function textClicked(pos) {
 }
 
 function onUp() {
-//   console.log("up");
+  //   console.log("up");
 }
 
 function onMove() {
-//   console.log("move");
+  //   console.log("move");
 }
 
 function getEvPos(ev) {
