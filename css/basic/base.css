@@ -3,9 +3,7 @@
 }
 
 html {
-  /* color: var(--clr1); */
-  /* line-height: 1.71; */
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
 body {
@@ -22,10 +20,9 @@ button {
   border-radius: 1em;
   padding: 0.2em;
   cursor: pointer;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
-
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
-button:hover{
-    background-color: var(--themeclr);
+button:hover {
+  background-color: var(--themeclr);
 }

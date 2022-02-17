@@ -3,8 +3,8 @@
 }
 
 .buttons-container {
-    width: 350px;
-    height: 500px;
+  width: 350px;
+  height: 500px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -20,10 +20,10 @@
 
 .text {
   grid-area: txt;
-font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-font-size: 2em;
-border-radius: .5em;
-text-align: center;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 2em;
+  border-radius: 0.5em;
+  text-align: center;
 }
 
 .switch-line {
@@ -49,6 +49,7 @@ text-align: center;
 
 .size {
   grid-area: size;
+  cursor: pointer;
 }
 
 .al {
@@ -66,17 +67,19 @@ text-align: center;
 .font {
   grid-area: font;
   font-size: 2em;
-border-radius: .5em;
+  border-radius: 0.5em;
+  cursor: pointer;
 }
 
-.color-label{
-    grid-area: color-label
+.color-label {
+  grid-area: color-label;
 }
 
-.color{
+.color {
   grid-area: color-select;
   justify-self: center;
   align-self: center;
+  cursor: pointer;
 }
 
 .upload {
@@ -87,31 +90,11 @@ border-radius: .5em;
   grid-area: download;
 }
 
-.download a{
-    text-decoration: none;
-    color: black;
-    
+.download a {
+  text-decoration: none;
+  color: black;
 }
 
 p {
   grid-area: p;
-}
-.facebook {
-    grid-area: facebook;
-}
-
-
-
-.meme-selector-container {
-  display: grid;
-}
-
-.meme-selector-container .card {
-  height: 150px;
-  width: 150px;
-}
-
-.card img {
-  height: 100%;
-  width: 100%;
 }

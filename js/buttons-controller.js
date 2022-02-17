@@ -1,6 +1,7 @@
 "use strict";
 
-const STORAGE_KEY = 'memesDB'
+// const gSavedMemes = []
+// const STORAGE_KEY = 'memesDB'
 
 function onUploadImg(){
   onRemoveSelectForSaveUpload()
@@ -9,10 +10,24 @@ function onUploadImg(){
 
 function downloadImg(elLink) {
   onRemoveSelectForSaveUpload()
-  saveToStorage(STORAGE_KEY, gCanvas)
   var imgContent = gCanvas.toDataURL("image/jpeg");
+  gSavedMemes.push(imgContent)
+  saveToStorage(STORAGE_KEY, gSavedMemes)
   elLink.href = imgContent;
 }
+
+// function onOpenMemesModal(){
+//   document.querySelector('.memes-modal').style.display='block'
+//   renderModal()
+// }
+
+// function renderModal() {
+//   const memes = loadFromStorage(STORAGE_KEY);
+//   const htmls = memes.map((meme) => {
+//     return `<div class="card"><img src="${meme}}.jpg" alt=""></div>`;
+//   })
+//   document.querySelector(".memes-container").innerHTML = htmls.join("");
+// }
 
 function onAddText() {
   var elText = document.querySelector("input[name=text-input]");

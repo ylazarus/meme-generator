@@ -13,9 +13,10 @@
         <div class="logo">memegen<img src="" alt="" /></div>
         <nav>
           <ul class="main-nav clean-list flex align-center">
-            <li><a href="">Memes</a></li>
+            <!-- <li onclick="onOpenMemesModal()">Memes</li> -->
+            <li>Memes</li>
             <li>|</li>
-            <li><a href="">About</a></li>
+            <li>About</li>
           </ul>
         </nav>
       </div>
@@ -28,7 +29,6 @@
         </div>
 
         <div class="buttons-container">
-          <!-- <label for="text-input">Text:</label> -->
           <input
             class="text"
             type="text"
@@ -37,15 +37,17 @@
             placeholder="Enter Text Here"
             oninput="onAddText()"
           />
-          <br />
+
           <button class="new-line" onclick="onAddLine()">
-            <img src="images/ICONS/add.png" alt="">
+            <img src="images/ICONS/add.png" alt="" />
           </button>
           <button class="remove-line" onclick="onRemoveCurrLine()">
-            <img src="images/ICONS/trash.png" alt="">
+            <img src="images/ICONS/trash.png" alt="" />
           </button>
-          <br />
-          <label class="color-label" for="color"><img src="images/ICONS/paint-board-and-brush.png" alt=""></label>
+
+          <label class="color-label" for="color"
+            ><img src="images/ICONS/paint-board-and-brush.png" alt=""
+          /></label>
           <input
             class="color"
             oninput="onUpdateColor(this.value)"
@@ -54,8 +56,7 @@
             type="color"
             value="#ffffff"
           />
-          <br />
-          <!-- <label for="size">Change Size:</label> -->
+
           <input
             class="size"
             onchange="onUpdateTextSize(this.value)"
@@ -65,7 +66,6 @@
             max="70"
             min="20"
           />
-          <!-- <label for="font">Select Font:</label> -->
           <select
             class="font"
             name="font"
@@ -78,7 +78,7 @@
             <option>Lucida Handwriting</option>
             <option>Copperplate</option>
           </select>
-          <br />
+
           <button class="al" onclick="onUpdateAlignment('left')">
             <img src="images/ICONS/align-to-left.png" alt="" />
           </button>
@@ -88,17 +88,17 @@
           <button class="ar" onclick="onUpdateAlignment('right')">
             <img src="images/ICONS/align-to-right.png" alt="" />
           </button>
-          <br />
+
           <button class="switch-line" onclick="onSwitchLine()">
             <img
               src="images/ICONS/up-and-down-opposite-double-arrows-side-by-side.png"
               alt=""
             />
           </button>
-          <br />
+
           <button class="line-down" onclick="onMoveLineDown()">⬇</button>
           <button class="line-up" onclick="onMoveLineUp()">⬆</button>
-          <br />
+
           <button class="upload" onclick="onUploadImg()">Upload Image</button>
 
           <button class="download">
@@ -116,15 +116,19 @@
         </div>
       </div>
       <div class="gallery">
-          <button class="flexible-button" onclick="onImFlexible()">I'm flexible</button>
-          <div class="meme-selector-container"></div>
+        <button class="flexible-button" onclick="onImFlexible()">
+          I'm flexible
+        </button>
+        <div class="meme-selector-container"></div>
       </div>
 
+      <!-- I almost got this bonus, but I ran out of time! -->
       <!-- <div class="memes-modal">
           <h1>Saved Memes:</h1>
+          <div class="memes-container"></div>
       </div> -->
-
     </body>
+    <script src="js/services/storage.js"></script>
     <script src="js/services/util.js"></script>
     <script src="js/services/upload.js"></script>
     <script src="js/services/meme-service.js"></script>

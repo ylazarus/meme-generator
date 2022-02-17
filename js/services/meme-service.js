@@ -17,6 +17,7 @@ const gMemesSentences = [
   "JS what is this?",
   "Write hello world , add to cv 7 years experienced",
 ];
+
 var gCanvas = document.getElementById("my-canvas");
 
 var gMeme = {

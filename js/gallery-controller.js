@@ -1,5 +1,6 @@
 "use strict";
 
+
 var gImages = [
   {
     id: 1,
@@ -45,6 +46,7 @@ function renderGallery() {
   });
   document.querySelector(".meme-selector-container").innerHTML = htmls.join("");
 }
+
 function onImFlexible(){
   setImage(getRandomIntInclusive(1, gImages.length));
   document.querySelector('.gallery').style.display = 'none'

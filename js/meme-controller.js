@@ -1,9 +1,5 @@
 "use strict";
 
-//get rid of rect before download
-// fix why focus isn't working on click
-//design
-//drag and drop
 
 var gCanvas;
 var gCtx;
@@ -99,11 +95,11 @@ function textClicked(pos) {
 }
 
 function onUp() {
-  //   console.log("up");
+
 }
 
 function onMove() {
-  //   console.log("move");
+
 }
 
 function getEvPos(ev) {
