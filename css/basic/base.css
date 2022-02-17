@@ -1,14 +1,31 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-    /* color: var(--clr1); */
-    /* line-height: 1.71; */
-    font-family: play, serif;
+  /* color: var(--clr1); */
+  /* line-height: 1.71; */
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
 
 body {
-    margin: 0;
-    font-size: 0.875rem;
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+img {
+  width: 100%;
+}
+
+button {
+  background-color: #fff;
+  border-radius: 1em;
+  padding: 0.2em;
+  cursor: pointer;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+
+}
+
+button:hover{
+    background-color: var(--themeclr);
 }

@@ -1,10 +1,18 @@
 .meme-editor-container {
   display: none;
+  gap: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1050px;
+  height: 80vh;
+  background-color: lightgray;
   justify-content: space-between;
-  margin: 1.5em;
+    padding: 1.5em;
 }
 
 .buttons-container {
+    width: 500px;
+    height: 600px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -14,13 +22,16 @@
     "switch-line  add-line    remove-line line-down    line-up"
     "size         size        al          ac           ar"
     "font         font        .           color-label color-select"
-    "upload        upload       .           download     download"
-    "p            p           p           p            p";
+    "upload        upload     facebook    download     download"
+    "p            p           p           p           p ";
 }
 
 .text {
   grid-area: txt;
-
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+font-size: 2em;
+border-radius: .5em;
+text-align: center;
 }
 
 .switch-line {
@@ -37,6 +48,7 @@
 
 .line-down {
   grid-area: line-down;
+  width: 100%;
 }
 
 .line-up {
@@ -61,6 +73,8 @@
 
 .font {
   grid-area: font;
+  font-size: 2em;
+border-radius: .5em;
 }
 
 .color-label{
@@ -69,6 +83,8 @@
 
 .color{
   grid-area: color-select;
+  justify-self: center;
+  align-self: center;
 }
 
 .upload {
@@ -79,8 +95,17 @@
   grid-area: download;
 }
 
+.download a{
+    text-decoration: none;
+    color: black;
+    
+}
+
 p {
   grid-area: p;
+}
+.facebook {
+    grid-area: facebook;
 }
 
 

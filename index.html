@@ -29,7 +29,8 @@
 
         <div class="buttons-container">
           <!-- <label for="text-input">Text:</label> -->
-          <input class="text"
+          <input
+            class="text"
             type="text"
             id="text-input"
             name="text-input"
@@ -37,11 +38,16 @@
             oninput="onAddText()"
           />
           <br />
-          <button class="new-line" onclick="onAddLine()">Add A New Line!</button>
-          <button class="remove-line" onclick="onRemoveCurrLine()">Remove Current Line</button>
+          <button class="new-line" onclick="onAddLine()">
+            <img src="images/ICONS/add.png" alt="">
+          </button>
+          <button class="remove-line" onclick="onRemoveCurrLine()">
+            <img src="images/ICONS/trash.png" alt="">
+          </button>
           <br />
-          <label class="color-label" for="color">Change Color:</label>
-          <input class="color"
+          <label class="color-label" for="color"><img src="images/ICONS/paint-board-and-brush.png" alt=""></label>
+          <input
+            class="color"
             oninput="onUpdateColor(this.value)"
             id="color"
             name="color"
@@ -50,7 +56,8 @@
           />
           <br />
           <!-- <label for="size">Change Size:</label> -->
-          <input class="size"
+          <input
+            class="size"
             onchange="onUpdateTextSize(this.value)"
             id="size"
             name="size"
@@ -59,7 +66,12 @@
             min="20"
           />
           <!-- <label for="font">Select Font:</label> -->
-          <select class="font" name="font" id="font" onchange="onUpdateFont(this.value)">
+          <select
+            class="font"
+            name="font"
+            id="font"
+            onchange="onUpdateFont(this.value)"
+          >
             <option>Impact</option>
             <option>Comic Sans MS</option>
             <option>Lucida Console</option>
@@ -67,27 +79,38 @@
             <option>Copperplate</option>
           </select>
           <br />
-          <button class="al" onclick="onUpdateAlignment('left')">Align-Left</button>
-          <button class="ac" onclick="onUpdateAlignment('center')">Align-Center</button>
-          <button class="ar" onclick="onUpdateAlignment('right')">Align-Right</button>
+          <button class="al" onclick="onUpdateAlignment('left')">
+            <img src="images/ICONS/align-to-left.png" alt="" />
+          </button>
+          <button class="ac" onclick="onUpdateAlignment('center')">
+            <img src="images/ICONS/center-text-alignment.png" alt="" />
+          </button>
+          <button class="ar" onclick="onUpdateAlignment('right')">
+            <img src="images/ICONS/align-to-right.png" alt="" />
+          </button>
           <br />
-          <button class="switch-line" onclick="onSwitchLine()">Switch Line</button>
+          <button class="switch-line" onclick="onSwitchLine()">
+            <img
+              src="images/ICONS/up-and-down-opposite-double-arrows-side-by-side.png"
+              alt=""
+            />
+          </button>
           <br />
-          <button class="line-down" onclick="onMoveLineDown()">Move Line Down</button>
-          <button class="line-up" onclick="onMoveLineUp()">Move Line Up</button>
+          <button class="line-down" onclick="onMoveLineDown()">⬇</button>
+          <button class="line-up" onclick="onMoveLineUp()">⬆</button>
           <br />
-          <button class="upload" onclick="onUploadImg()">
-            Upload Image from Canvas
+          <button class="upload" onclick="onUploadImg()">Upload Image</button>
+
+          <button class="download">
+            <a
+              href="#"
+              class="btn"
+              onclick="downloadImg(this)"
+              download="my-img.jpg"
+              >Download as jpeg</a
+            >
           </button>
 
-          <button class="download"><a
-            href="#"
-            class="btn"
-            onclick="downloadImg(this)"
-            download="my-img.jpg"
-            >Download as jpeg</a>
-        </button>
-          
           <p class="user-msg"></p>
           <div class="share-container"></div>
         </div>

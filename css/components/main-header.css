@@ -2,6 +2,7 @@
     height: 5em;
     background-color: var(--themeclr);
     color: white;
+    margin-bottom: 2em;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
