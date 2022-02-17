@@ -45,10 +45,24 @@ function renderGallery() {
   });
   document.querySelector(".meme-selector-container").innerHTML = htmls.join("");
 }
+function onImFlexible(){
+  setImage(getRandomIntInclusive(1, gImages.length));
+  document.querySelector('.gallery').style.display = 'none'
+  document.querySelector('.meme-editor-container').style.display = 'flex'
+  document.querySelector('.canvas-container').style.display = 'block'
+  doImFlexible()
+  const lucky = getRandomIntInclusive(0, 1)
+  if (lucky) {
+    addLine()
+    doImFlexible()
+  }
+  renderMeme();
+  renderCurrentSettings();
+}
 
 function onImgSelect(imgID) {
   setImage(imgID);
-  document.querySelector('.meme-selector-container').style.display = 'none'
+  document.querySelector('.gallery').style.display = 'none'
   document.querySelector('.meme-editor-container').style.display = 'flex'
   document.querySelector('.canvas-container').style.display = 'block'
   renderMeme();

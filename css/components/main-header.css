@@ -1,5 +1,6 @@
 .main-header {
     height: 5em;
+    width: 100%;
     background-color: var(--themeclr);
     color: white;
     margin-bottom: 2em;

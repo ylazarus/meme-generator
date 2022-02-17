@@ -3,12 +3,12 @@
 
 .buttons-container {
     margin-top: 2em;
-    width: 400px;
+    width: 375px;
     height: 500px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-  gap: 1.5em;
+  gap: 1em;
   grid-template-areas:
     ".          txt         txt         txt         ."
     "switch-line  add-line    remove-line line-down    line-up"
