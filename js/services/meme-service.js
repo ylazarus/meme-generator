@@ -2,48 +2,12 @@
 
 var gCanvas = document.getElementById("my-canvas");
 
-var gImages = [
-  {
-    id: 1,
-    url: "images/1.jpg",
-    keywords: ["funny", "politics", "crazy", "angry"],
-  },
-  {
-    id: 2,
-    url: "images/2.jpg",
-    keywords: ["funny", "animals", "cute", "sweet"],
-  },
-  {
-    id: 3,
-    url: "images/3.jpg",
-    keywords: ["funny", "animals", "sweet", "babies"],
-  },
-  { id: 4, url: "images/4.jpg", keywords: ["funny", "animals", "cute"] },
-  { id: 5, url: "images/5.jpg", keywords: ["funny", "babies", "angry"] },
-  { id: 6, url: "images/6.jpg", keywords: ["funny", "crazy"] },
-  { id: 7, url: "images/7.jpg", keywords: ["funny", "crazy", "babies"] },
-  {
-    id: 8,
-    url: "images/8.jpg",
-    keywords: ["funny", "crazy", "happy", "movies"],
-  },
-  { id: 9, url: "images/9.jpg", keywords: ["funny", "babies", "happy"] },
-  { id: 10, url: "images/10.jpg", keywords: ["funny", "happy", "politics"] },
-  { id: 11, url: "images/11.jpg", keywords: ["crazy", "sports", "angry"] },
-  { id: 12, url: "images/12.jpg", keywords: ["funny", "you"] },
-  { id: 13, url: "images/13.jpg", keywords: ["funny", "cheers", "happy"] },
-  { id: 14, url: "images/14.jpg", keywords: ["angry", "intense", "movies"] },
-  { id: 15, url: "images/15.jpg", keywords: ["angry", "you", "movies"] },
-  { id: 16, url: "images/16.jpg", keywords: ["funny", "movies"] },
-  { id: 17, url: "images/17.jpg", keywords: ["angry", "politics"] },
-  { id: 18, url: "images/18.jpg", keywords: ["funny", "happy", "movies"] },
-];
-
 var gMeme = {
   selectedImgId: 0,
   selectedLineIdx: 0,
   lines: [
     {
+      id: makeID(5),
       txt: "",
       size: 50,
       font: "Impact",
@@ -52,14 +16,17 @@ var gMeme = {
       stroke: "black",
       y: 100,
       x: gCanvas.width / 2,
+      beginning: gCanvas.width / 2,
+      end: gCanvas.width / 2,
       isDrag: false,
-      isFocus: false,
+      isSelected: true,
     },
   ],
 };
 
 function addLine() {
   var newLine = {
+    id: makeID(5),
     txt: "",
     size: 50,
     font: "Impact",
@@ -68,31 +35,63 @@ function addLine() {
     stroke: "black",
     y: _setY(),
     x: gCanvas.width / 2,
+    beginning: gCanvas.width / 2,
+    end: gCanvas.width / 2,
     isDrag: false,
-    isFocus: false,
+    isSelected: true,
   };
   gMeme.lines.push(newLine);
-}
-
-function setTextFocus(value) {
-  gMeme.lines[gMeme.selectedLineIdx].isFocus = value;
 }
 
 function removeCurrLine() {
   gMeme.lines.splice(gMeme.selectedLineIdx, 1);
 }
 
+function updateBeginningEnd(beginning, width) {
+  gMeme.lines[gMeme.selectedLineIdx].beginning = beginning;
+  gMeme.lines[gMeme.selectedLineIdx].end = beginning + width;
+}
+
+function setClickedSelected(lineID) {
+  for (var i = 0; i < gMeme.lines.length; i++) {
+    if (gMeme.lines[i].id === lineID) {
+      gMeme.lines[i].isSelected = true;
+      gMeme.selectedLineIdx = i;
+    } else {
+      gMeme.lines[i].isSelected = false;
+    }
+  }
+}
+
+function removeSelect(){
+    gMeme.lines.forEach(line => line.isSelected = false)
+}
+
+function switchLine() {
+  _setTextSelected(false);
+  gMeme.selectedLineIdx === gMeme.lines.length - 1
+    ? (gMeme.selectedLineIdx = 0)
+    : gMeme.selectedLineIdx++;
+  _setTextSelected(true);
+}
+
 function makeLineIdxTheLastLine() {
+  if (gMeme.lines[gMeme.selectedLineIdx]) _setTextSelected(false);
   gMeme.selectedLineIdx = gMeme.lines.length - 1;
+  _setTextSelected(true);
+}
+
+function _setTextSelected(value) {
+  gMeme.lines[gMeme.selectedLineIdx].isSelected = value;
 }
 
 function setX() {
-    var align = gMeme.lines[gMeme.selectedLineIdx].align
-    var x
+  var align = gMeme.lines[gMeme.selectedLineIdx].align;
+  var x;
   if (align === "right") x = gCanvas.width - 20;
   else if (align === "left") x = 20;
   else x = gCanvas.width / 2;
-  gMeme.lines[gMeme.selectedLineIdx].x = x
+  gMeme.lines[gMeme.selectedLineIdx].x = x;
 }
 
 function _setY() {
@@ -124,12 +123,6 @@ function updateAlignment(direction) {
 
 function updateFont(newFont) {
   gMeme.lines[gMeme.selectedLineIdx].font = newFont;
-}
-
-function switchLine() {
-  gMeme.selectedLineIdx === gMeme.lines.length - 1
-    ? (gMeme.selectedLineIdx = 0)
-    : gMeme.selectedLineIdx++;
 }
 
 function getTextForInput() {

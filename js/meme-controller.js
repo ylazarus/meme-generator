@@ -1,22 +1,21 @@
 "use strict";
 
-//add download and share
-//highlight for selected?
+//get rid of rect before download
+// fix why focus isn't working on click
 //design
 //drag and drop
 
-
-var gCanvas 
-var gCtx 
+var gCanvas;
+var gCtx;
+const gTouchEvs = ["touchstart", "touchmove", "touchend"];
 
 function onInit() {
-    gCanvas = document.getElementById("my-canvas");
-    gCtx = gCanvas.getContext("2d");
+  gCanvas = document.getElementById("my-canvas");
+  gCtx = gCanvas.getContext("2d");
 
-    addListeners()
-    renderGallery();
-
-  }
+  addListeners();
+  renderGallery();
+}
 
 function renderMeme() {
   var meme = getMeme();
@@ -28,108 +27,6 @@ function renderMeme() {
   img.src = `images/${meme.selectedImgId}.jpg`;
 }
 
-function addListeners() {
-    addMouseListeners()
-    addTouchListeners()
-}
-
-function addMouseListeners() {
-    gCanvas.addEventListener('mousemove', onMove)
-    gCanvas.addEventListener('mousedown', onDown)
-    gCanvas.addEventListener('mouseup', onUp)
-}
-
-function addTouchListeners() {
-    gCanvas.addEventListener('touchmove', onMove)
-    gCanvas.addEventListener('touchstart', onDown)
-    gCanvas.addEventListener('touchend', onUp)
-}
-
-function onDown(){
-    console.log('down');
-}
-
-function onUp(){
-    console.log('up');
-
-}
-
-function onMove(){
-    console.log('move');
-    
-}
-
-function onAddText() {
-  var elText = document.querySelector("input[name=text-input]");
-  var text = elText.value;
-  setLineTxt(text);
-  renderMeme();
-}
-
-function onUpdateFont(newFont){
-    updateFont(newFont)
-    renderMeme()
-}
-
-function onUpdateTextSize(newSize) {
-  updateTextSize(newSize);
-  renderMeme();
-}
-
-function onUpdateColor(newColor) {
-  updateColor(newColor);
-  renderMeme();
-}
-
-function onSwitchLine() {
-  switchLine();
-  renderCurrentSettings();
-}
-
-function onMoveLineUp(){
-    moveLineUp()
-    renderMeme()
-}
-
-function onMoveLineDown(){
-    moveLineDown()
-    renderMeme()
-}
-
-function renderCurrentSettings() {
-  var text = getTextForInput();
-  var color = getColorForInput();
-  var textSize = getTextSizeForInput();
-  document.getElementById("text-input").value = text;
-  document.getElementById("color").value = color;
-  document.getElementById("size").value = textSize;
-}
-
-function onAddLine() {
-  addLine();
-  makeLineIdxTheLastLine(); // check order here
-  renderCurrentSettings();
-  renderMeme();
-}
-
-function onRemoveCurrLine() {
-  removeCurrLine();
-  var lines = getLines();
-  console.log(lines);
-  if (lines.length > 0) {
-    makeLineIdxTheLastLine();
-  } else {
-    addLine();
-  }
-  renderCurrentSettings();
-  renderMeme();
-}
-
-function onUpdateAlignment(direction) {
-  updateAlignment(direction);
-  renderMeme();
-}
-
 function drawText(line) {
   var x = line.x;
   var y = line.y;
@@ -139,21 +36,86 @@ function drawText(line) {
   gCtx.textAlign = line.align;
   gCtx.fillText(line.txt, x, y);
   gCtx.strokeText(line.txt, x, y);
+
+  if (line.isSelected) {
+    drawRect(x, y, line);
+  }
 }
 
-// function setX(line) {
-//   if (line.align === "center") return gCanvas.width / 2;
-//   else if (line.align === "left") return 20;
-//   else return gCanvas.width - 20;
-// }
+function drawRect(x, y, line) {
+  var width = gCtx.measureText(line.txt).width;
+  var height = +line.size;
+  var beginningOfLine = setBeginningOfLine(x, width, line);
+  updateBeginningEnd(beginningOfLine, width);
+  gCtx.beginPath();
+  gCtx.rect(
+    beginningOfLine - 20,
+    y - height,
+    width + 40,
+    height + height * 0.2
+  );
+  gCtx.strokeStyle = "black";
+  gCtx.stroke();
+}
 
+function setBeginningOfLine(x, width, line) {
+  if (line.align === "right") return x - width;
+  else if (line.align === "left") return x;
+  else return x - width / 2;
+}
 
+function onRemoveSelectForSaveUpload(){
+    removeSelect()
+    renderMeme()
+}
 
-// function drawRect(x, y, line) {
-//     gCtx.beginPath()
-//     gCtx.rect(x - 10, y - 10, line.width + 20, line.height + 20)
-//     gCtx.fillStyle = 'orange'
-//     gCtx.fillRect(x, y, 150, 150)
-//     gCtx.strokeStyle = 'black'
-//     gCtx.stroke()
-//   }
+function onDown(ev) {
+  const pos = getEvPos(ev);
+  var lineID = textClicked(pos);
+  if (lineID) setClickedSelected(lineID);
+  else removeSelect()
+renderMeme();
+renderCurrentSettings();
+}
+
+// add focuser on text input
+function textClicked(pos) {
+  var ID = null;
+  var { lines } = getMeme();
+  lines.forEach((line) => {
+    if (
+      pos.y <= line.y &&
+      pos.y >= line.y - line.size &&
+      pos.x >= line.beginning &&
+      pos.x <= line.end
+    ) {
+      ID = line.id;
+      return;
+    }
+  });
+  return ID;
+}
+
+function onUp() {
+//   console.log("up");
+}
+
+function onMove() {
+//   console.log("move");
+}
+
+function getEvPos(ev) {
+  var pos = {
+    x: ev.offsetX,
+    y: ev.offsetY,
+  };
+  if (gTouchEvs.includes(ev.type)) {
+    ev.preventDefault();
+    ev = ev.changedTouches[0];
+    pos = {
+      x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+      y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+    };
+  }
+  return pos;
+}

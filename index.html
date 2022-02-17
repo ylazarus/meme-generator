@@ -48,11 +48,11 @@
         />
         <label for="font">Select Font:</label>
         <select name="font" id="font" onchange="onUpdateFont(this.value)">
-            <option>Impact</option>
-            <option>Comic Sans MS</option>
-            <option>Lucida Console</option>
-            <option>Lucida Handwriting</option>
-            <option>Copperplate</option>
+          <option>Impact</option>
+          <option>Comic Sans MS</option>
+          <option>Lucida Console</option>
+          <option>Lucida Handwriting</option>
+          <option>Copperplate</option>
         </select>
         <br />
         <button onclick="onUpdateAlignment('left')">Align-Left</button>
@@ -60,15 +60,32 @@
         <button onclick="onUpdateAlignment('right')">Align-Right</button>
         <br />
         <button onclick="onSwitchLine()">Switch Line</button>
-        <br>
+        <br />
         <button onclick="onMoveLineDown()">Move Line Down</button>
         <button onclick="onMoveLineUp()">Move Line Up</button>
+        <br />
+        <button class="btn" onclick="onUploadImg()">
+          Upload Image from Canvas
+        </button>
+
+        <a
+          href="#"
+          class="btn"
+          onclick="downloadImg(this)"
+          download="my-img.jpg"
+          >Download as jpeg</a
+        >
+        <p class="user-msg"></p>
+        <div class="share-container"></div>
       </div>
 
       <div class="meme-selector-container"></div>
     </body>
+    <script src="js/services/util.js"></script>
+    <script src="js/services/upload.js"></script>
     <script src="js/services/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>
+    <script src="js/buttons-controller.js"></script>
     <script src="js/meme-controller.js"></script>
   </body>
 </html>
