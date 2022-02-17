@@ -1,0 +1,13 @@
+.meme-selector-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-auto-rows: 180px;
+    justify-items: center;
+}
+
+.flexible-button{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 1em;
+}

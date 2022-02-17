@@ -40,7 +40,7 @@ var gImages = [
 function renderGallery() {
   const images = getImages();
   const htmls = images.map((image) => {
-    return `<div class="card card-layout"><img src="images/${image.id}.jpg" alt="" 
+    return `<div class="card"><img src="images/${image.id}.jpg" alt="" 
     onclick="onImgSelect('${image.id}')"></div>`;
   });
   document.querySelector(".meme-selector-container").innerHTML = htmls.join("");

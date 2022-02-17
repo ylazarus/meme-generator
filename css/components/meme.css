@@ -1,9 +1,9 @@
-
-
+.meme-editor-container {
+  display: none;
+}
 
 .buttons-container {
-    margin-top: 2em;
-    width: 375px;
+    width: 350px;
     height: 500px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -107,8 +107,8 @@ p {
 }
 
 .meme-selector-container .card {
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
 }
 
 .card img {

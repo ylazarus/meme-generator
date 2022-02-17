@@ -1,5 +1,7 @@
 "use strict";
 
+const STORAGE_KEY = 'memesDB'
+
 function onUploadImg(){
   onRemoveSelectForSaveUpload()
   uploadImg()
@@ -7,6 +9,7 @@ function onUploadImg(){
 
 function downloadImg(elLink) {
   onRemoveSelectForSaveUpload()
+  saveToStorage(STORAGE_KEY, gCanvas)
   var imgContent = gCanvas.toDataURL("image/jpeg");
   elLink.href = imgContent;
 }

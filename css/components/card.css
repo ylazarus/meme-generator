@@ -1,6 +1,0 @@
-.meme-selector-container{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
-    grid-auto-rows: 215px;
-    justify-items: center;
-}
