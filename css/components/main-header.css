@@ -1,13 +1,13 @@
 .main-header {
-    height: 33px;
+    height: 5em;
     background-color: var(--themeclr);
     color: white;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .main-header-container{
-    margin-left: 25px;
-    margin-right: 25px;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
     height: 100%;
 }
 
@@ -15,4 +15,8 @@ li a{
     text-decoration: none;
     color: white;
     cursor: pointer;
+}
+
+li a:hover{
+    color: black
 }

@@ -1,0 +1,100 @@
+.meme-editor-container {
+  display: none;
+  justify-content: space-between;
+  margin: 1.5em;
+}
+
+.buttons-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 1.5em;
+  grid-template-areas:
+    ".          txt         txt         txt         ."
+    "switch-line  add-line    remove-line line-down    line-up"
+    "size         size        al          ac           ar"
+    "font         font        .           color-label color-select"
+    "upload        upload       .           download     download"
+    "p            p           p           p            p";
+}
+
+.text {
+  grid-area: txt;
+
+}
+
+.switch-line {
+  grid-area: switch-line;
+}
+
+.new-line {
+  grid-area: add-line;
+}
+
+.remove-line {
+  grid-area: remove-line;
+}
+
+.line-down {
+  grid-area: line-down;
+}
+
+.line-up {
+  grid-area: line-up;
+}
+
+.size {
+  grid-area: size;
+}
+
+.al {
+  grid-area: al;
+}
+
+.ac {
+  grid-area: ac;
+}
+
+.ar {
+  grid-area: ar;
+}
+
+.font {
+  grid-area: font;
+}
+
+.color-label{
+    grid-area: color-label
+}
+
+.color{
+  grid-area: color-select;
+}
+
+.upload {
+  grid-area: upload;
+}
+
+.download {
+  grid-area: download;
+}
+
+p {
+  grid-area: p;
+}
+
+
+
+.meme-selector-container {
+  display: grid;
+}
+
+.meme-selector-container .card {
+  height: 200px;
+  width: 200px;
+}
+
+.card img {
+  height: 100%;
+  width: 100%;
+}

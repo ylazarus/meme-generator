@@ -40,13 +40,17 @@ var gImages = [
 function renderGallery() {
   const images = getImages();
   const htmls = images.map((image) => {
-    return `<img src="images/${image.id}.jpg" alt="" onclick="onImgSelect('${image.id}')">`;
+    return `<div class="card"><img src="images/${image.id}.jpg" alt="" 
+    onclick="onImgSelect('${image.id}')"></div>`;
   });
   document.querySelector(".meme-selector-container").innerHTML = htmls.join("");
 }
 
 function onImgSelect(imgID) {
   setImage(imgID);
+  document.querySelector('.meme-selector-container').style.display = 'none'
+  document.querySelector('.meme-editor-container').style.display = 'flex'
+  document.querySelector('.canvas-container').style.display = 'block'
   renderMeme();
   renderCurrentSettings();
 }
