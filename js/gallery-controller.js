@@ -1,5 +1,18 @@
 "use strict";
 
+var gKeywords = {
+  funny: 4,
+  babies: 2,
+  sports: 0,
+  cheers: 1,
+  happy: 5,
+  politics: 0,
+  crazy: 3,
+  angry: 2,
+  movies: 0,
+  animals: 0
+}
+
 
 var gImages = [
   {
@@ -38,25 +51,60 @@ var gImages = [
   { id: 18, url: "images/18.jpg", keywords: ["funny", "happy", "movies"] },
 ];
 
+function renderSearchWords(){
+  var keys = Object.keys(gKeywords)
+  var vals = Object.values(gKeywords)
+  var html = ''
+    for (let i = 0; i < keys.length; i++){
+      html += `<div class="click-word" onclick="clickedWordForFilter('${keys[i]}')" 
+    style="font-size:${vals[i]}em">${keys[i]}</div>`
+    }
+ 
+  document.querySelector(".clickable-search").innerHTML = html
+}
+
 function renderGallery() {
   const images = getImages();
-  const htmls = images.map((image) => {
+  render(images)
+}
+
+function render(imgs){
+  const htmls = imgs.map((image) => {
     return `<div class="card"><img src="images/${image.id}.jpg" alt="" 
     onclick="onImgSelect('${image.id}')"></div>`;
   });
   document.querySelector(".meme-selector-container").innerHTML = htmls.join("");
 }
 
-function onImFlexible(){
+function clickedWordForFilter(word){
+  document.getElementById("keyword").value = word;
+  renderFilteredImages()
+}
+
+function renderFilteredImages(){
+  const images = getImages()
+  var elKeyword = document.querySelector("input[name=keyword]")
+  var keyword = elKeyword.value
+  gKeywords[keyword]++
+  renderSearchWords()
+  const filteredImages = images.filter(image => image.keywords.includes(keyword))
+  if (filteredImages.length === 0) {
+    renderGallery() 
+    return
+  }
+  render(filteredImages)
+}
+
+function onImFlexible() {
   setImage(getRandomIntInclusive(1, gImages.length));
-  document.querySelector('.gallery').style.display = 'none'
-  document.querySelector('.meme-editor-container').style.display = 'flex'
-  document.querySelector('.canvas-container').style.display = 'block'
-  doImFlexible()
-  const lucky = getRandomIntInclusive(0, 1)
+  document.querySelector(".gallery").style.display = "none";
+  document.querySelector(".meme-editor-container").style.display = "flex";
+  document.querySelector(".canvas-container").style.display = "block";
+  doImFlexible();
+  const lucky = getRandomIntInclusive(0, 1);
   if (lucky) {
-    addLine()
-    doImFlexible()
+    addLine();
+    doImFlexible();
   }
   renderMeme();
   renderCurrentSettings();
@@ -64,9 +112,13 @@ function onImFlexible(){
 
 function onImgSelect(imgID) {
   setImage(imgID);
-  document.querySelector('.gallery').style.display = 'none'
-  document.querySelector('.meme-editor-container').style.display = 'flex'
-  document.querySelector('.canvas-container').style.display = 'block'
+  document.querySelector(".gallery").style.display = "none";
+  document.querySelector(".meme-editor-container").style.display = "flex";
+  document.querySelector(".canvas-container").style.display = "block";
   renderMeme();
   renderCurrentSettings();
+}
+
+function onResetPage() {
+  location.reload();
 }

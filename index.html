@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- <meta Access-Control-Allow-Origin: * /> -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,13 +11,12 @@
   <body onload="onInit()">
     <header class="main-header">
       <div class="main-header-container flex align-center space-between">
-        <div class="logo">memegen<img src="" alt="" /></div>
+        <div class="logo" onclick="onResetPage()">memegen</div>
         <nav>
           <ul class="main-nav clean-list flex align-center">
-            <!-- <li onclick="onOpenMemesModal()">Memes</li> -->
-            <li>Memes</li>
+            <li onclick="onOpenMemesModal()">Memes</li>
             <li>|</li>
-            <li>About</li>
+            <li onclick="toggleAboutModal()">About</li>
           </ul>
         </nav>
       </div>
@@ -63,8 +63,8 @@
             id="size"
             name="size"
             type="range"
-            max="70"
-            min="20"
+            max="60"
+            min="15"
           />
           <select
             class="font"
@@ -115,18 +115,60 @@
           <div class="share-container"></div>
         </div>
       </div>
+
       <div class="gallery">
+        <div class="keywords-container">
+          <label for="keywords">Search By Keyword:</label>
+          <input
+            class="keywords"
+            onchange="renderFilteredImages()"
+            list="keywords"
+            id="keyword"
+            name="keyword"
+          />
+          <datalist id="keywords">
+            <option value="funny"></option>
+            <option value="babies"></option>
+            <option value="sports"></option>
+            <option value="cheers"></option>
+            <option value="happy"></option>
+            <option value="politics"></option>
+            <option value="crazy"></option>
+            <option value="angry"></option>
+            <option value="movies"></option>
+            <option value="animals"></option>
+          </datalist>
+        </div>
+        <div class="clickable-search"></div>
         <button class="flexible-button" onclick="onImFlexible()">
           I'm flexible
         </button>
+
         <div class="meme-selector-container"></div>
       </div>
 
-      <!-- I almost got this bonus, but I ran out of time! -->
-      <!-- <div class="memes-modal">
-          <h1>Saved Memes:</h1>
-          <div class="memes-container"></div>
-      </div> -->
+      <div class="about-modal modal-layout">
+        <button class="modal-close" onclick="toggleAboutModal()">Close</button>
+        <h2 class="modal-title">About this App</h2>
+        <img
+          src="http://ca-upload.com/here/serveForShare.php?id=620f4e6911a53"
+          alt=""
+        />
+
+        <p>
+          Using this app is simple: click on a photo, add and style a funny text
+          and then upload or download and share!
+        </p>
+        <p>
+          This app was created by Yoni Lazarus as a project for Coding Academy
+        </p>
+      </div>
+
+      <div class="memes-modal modal-layout">
+        <button class="modal-close" onclick="toggleMemesModal()">Close</button>
+        <h2>Your Memes:</h2>
+        <div class="memes-container"></div>
+      </div>
     </body>
     <script src="js/services/storage.js"></script>
     <script src="js/services/util.js"></script>

@@ -1,33 +1,45 @@
 "use strict";
 
-// const gSavedMemes = []
-// const STORAGE_KEY = 'memesDB'
+const STORAGE_KEY = "memesDB";
+const gSavedMemes = loadFromStorage(STORAGE_KEY)
+  ? loadFromStorage(STORAGE_KEY)
+  : [];
 
-function onUploadImg(){
-  onRemoveSelectForSaveUpload()
-  uploadImg()
+function onUploadImg() {
+  onRemoveSelectForSaveUpload();
+  setTimeout(uploadImg, 100)
+  // uploadImg()
 }
 
 function downloadImg(elLink) {
-  onRemoveSelectForSaveUpload()
+  onRemoveSelectForSaveUpload();
   var imgContent = gCanvas.toDataURL("image/jpeg");
-  gSavedMemes.push(imgContent)
-  saveToStorage(STORAGE_KEY, gSavedMemes)
+  var imgForStorage = imgContent.replace(/^data:image\/(png|jpg);base64,/, "");
+  gSavedMemes.push(imgForStorage);
+  saveToStorage(STORAGE_KEY, gSavedMemes);
   elLink.href = imgContent;
 }
 
-// function onOpenMemesModal(){
-//   document.querySelector('.memes-modal').style.display='block'
-//   renderModal()
-// }
+function toggleAboutModal() {
+  document.querySelector(".about-modal").classList.toggle("modal-open");
+}
 
-// function renderModal() {
-//   const memes = loadFromStorage(STORAGE_KEY);
-//   const htmls = memes.map((meme) => {
-//     return `<div class="card"><img src="${meme}}.jpg" alt=""></div>`;
-//   })
-//   document.querySelector(".memes-container").innerHTML = htmls.join("");
-// }
+function toggleMemesModal() {
+  document.querySelector(".memes-modal").classList.toggle("modal-open");
+}
+
+function onOpenMemesModal() {
+  document.querySelector(".memes-modal").classList.toggle("modal-open");
+  renderModal();
+}
+
+function renderModal() {
+  const memes = loadFromStorage(STORAGE_KEY);
+  const htmls = memes.map((meme) => {
+    return `<div class="card"><img src="${meme}" alt=""></div>`;
+  });
+  document.querySelector(".memes-container").innerHTML = htmls.join("");
+}
 
 function onAddText() {
   var elText = document.querySelector("input[name=text-input]");

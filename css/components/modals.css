@@ -1,0 +1,25 @@
+.memes-modal {
+  display: none;
+  text-align: center;
+  width: 80vw;
+  max-height: 80vh;
+}
+
+.memes-modal.modal-open{
+    display: flex;
+}
+
+.memes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-auto-rows: 180px;
+  justify-items: center;
+}
+
+.about-modal{
+    display: none;
+}
+
+.about-modal.modal-open {
+  display: flex;  
+}

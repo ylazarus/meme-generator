@@ -63,7 +63,7 @@ function addLine() {
 
 function doImFlexible() {
   gMeme.lines[gMeme.lines.length - 1].txt = _getTextForFlexible();
-  gMeme.lines[gMeme.lines.length - 1].size = getRandomIntInclusive(20, 50);
+  gMeme.lines[gMeme.lines.length - 1].size = getRandomIntInclusive(15, 40);
   gMeme.lines[gMeme.lines.length - 1].fill = getRandomColor();
   gMeme.lines[gMeme.lines.length - 1].stroke = getRandomColor();
 }
@@ -95,6 +95,7 @@ function setClickedSelected(lineID) {
 function removeSelect() {
   gMeme.lines.forEach((line) => (line.isSelected = false));
 }
+
 
 function switchLine() {
   _setTextSelected(false);

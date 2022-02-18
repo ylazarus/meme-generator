@@ -1,6 +1,5 @@
 "use strict";
 
-
 var gCanvas;
 var gCtx;
 const gTouchEvs = ["touchstart", "touchmove", "touchend"];
@@ -10,10 +9,9 @@ function onInit() {
   gCtx = gCanvas.getContext("2d");
 
   addListeners();
+  renderSearchWords();
   renderGallery();
-  
 }
-
 
 function renderMeme() {
   var meme = getMeme();
@@ -70,10 +68,10 @@ function onRemoveSelectForSaveUpload() {
 function onDown(ev) {
   const pos = getEvPos(ev);
   var lineID = textClicked(pos);
-  if (lineID) setClickedSelected(lineID);
-  else removeSelect();
-  renderMeme();
-  renderCurrentSettings();
+  if (lineID) {
+    setClickedSelected(lineID);
+    setDrag(true)
+  } else removeSelect();
 }
 
 // add focuser on text input
@@ -95,12 +93,22 @@ function textClicked(pos) {
 }
 
 function onUp() {
-
+  setDrag(false);
+  renderMeme();
+  renderCurrentSettings();
 }
 
-function onMove() {
-
-}
+// function onMove(ev) {
+//   const circle = getCircle();
+//   if (circle.isDrag) {
+//       const pos = getEvPos(ev)
+//       const dx = pos.x - gStartPos.x
+//       const dy = pos.y - gStartPos.y
+//       moveCircle(dx, dy)
+//       gStartPos = pos
+//       renderCanvas()
+//   }
+// }
 
 function getEvPos(ev) {
   var pos = {
