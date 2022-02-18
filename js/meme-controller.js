@@ -72,6 +72,8 @@ function onDown(ev) {
     setClickedSelected(lineID);
     setDrag(true)
   } else removeSelect();
+  renderMeme();
+  renderCurrentSettings();
 }
 
 // add focuser on text input
@@ -94,21 +96,18 @@ function textClicked(pos) {
 
 function onUp() {
   setDrag(false);
-  renderMeme();
-  renderCurrentSettings();
-}
+  }
 
-// function onMove(ev) {
-//   const circle = getCircle();
-//   if (circle.isDrag) {
-//       const pos = getEvPos(ev)
-//       const dx = pos.x - gStartPos.x
-//       const dy = pos.y - gStartPos.y
-//       moveCircle(dx, dy)
-//       gStartPos = pos
-//       renderCanvas()
-//   }
-// }
+function onMove(ev) {
+  const meme = getMeme();
+  if (meme.lines[meme.selectedLineIdx].isDrag) {
+      const pos = getEvPos(ev)
+      const dx = pos.x - meme.lines[meme.selectedLineIdx].x
+      const dy = pos.y - meme.lines[meme.selectedLineIdx].y
+      moveLine(dx, dy)
+      renderMeme()
+  }
+}
 
 function getEvPos(ev) {
   var pos = {

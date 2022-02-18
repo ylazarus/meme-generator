@@ -88,6 +88,7 @@
           <button class="ar" onclick="onUpdateAlignment('right')">
             <img src="images/ICONS/align-to-right.png" alt="" />
           </button>
+          <button class="add-sticker" onclick="toggleStickersModal()">😀</button>         </button>
 
           <button class="switch-line" onclick="onSwitchLine()">
             <img
@@ -151,7 +152,6 @@
         <button class="modal-close" onclick="toggleAboutModal()">Close</button>
         <h2 class="modal-title">About this App</h2>
         <img
-          src="http://ca-upload.com/here/serveForShare.php?id=620f4e6911a53"
           alt=""
         />
 
@@ -169,6 +169,13 @@
         <h2>Your Memes:</h2>
         <div class="memes-container"></div>
       </div>
+
+      <div class="stickers-modal">
+        <button class="modal-close" onclick="toggleStickersModal()">Close</button>
+        <h2>Add a sticker:</h2>
+        <div class="stickers-container"></div>
+      </div>
+
     </body>
     <script src="js/services/storage.js"></script>
     <script src="js/services/util.js"></script>

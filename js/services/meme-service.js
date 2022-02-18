@@ -130,6 +130,16 @@ function _setY() {
   if (gMeme.lines.length > 1) return gCanvas.height / 2;
 }
 
+function setDrag(val){
+  gMeme.lines[gMeme.selectedLineIdx].isDrag = val
+}
+
+function moveLine(dx, dy) {
+  gMeme.lines[gMeme.selectedLineIdx].x += dx
+  gMeme.lines[gMeme.selectedLineIdx].y += dy
+
+}
+
 function moveLineUp() {
   gMeme.lines[gMeme.selectedLineIdx].y -= 10;
 }

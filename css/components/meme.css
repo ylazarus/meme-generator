@@ -10,10 +10,10 @@
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 1em;
   grid-template-areas:
-    ".          txt         txt         txt         ."
+    "txt          txt         txt         txt         txt"
     "switch-line  add-line    remove-line line-down    line-up"
     "size         size        al          ac           ar"
-    "font         font        .           color-label color-select"
+    "font         font        sticker     color-label color-select"
     "upload        upload     facebook    download     download"
     "p            p           p           p           p ";
 }
@@ -97,4 +97,9 @@
 
 p {
   grid-area: p;
+}
+
+.add-sticker{
+  grid-area: sticker;
+  font-size: 1.5em;
 }
