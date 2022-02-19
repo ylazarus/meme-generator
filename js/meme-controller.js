@@ -14,6 +14,14 @@ function onInit() {
   renderStickers()
 }
 
+function onSetLang(lang) {
+  setLang(lang);
+  if (lang === 'he') document.body.classList.add('rtl') 
+  else document.body.classList.remove('rtl')
+  doTrans();
+  renderMeme();
+}
+
 function renderMeme() {
   var meme = getMeme();
   var img = new Image();

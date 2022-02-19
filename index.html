@@ -13,22 +13,26 @@
         <div class="logo" onclick="onResetPage()">memegen</div>
         <nav>
           <ul class="main-nav clean-list flex align-center">
-            <li onclick="onOpenMemesModal()">Memes</li>
+            <li data-trans="memes" onclick="onOpenMemesModal()">Memes</li>
             <li>|</li>
-            <li onclick="toggleAboutModal()">About</li>
+            <li data-trans="about" onclick="toggleAboutModal()">About</li>
           </ul>
         </nav>
       </div>
     </header>
 
     <body class="body">
+      <select class="language-selector" onchange="onSetLang(this.value)">
+        <option value="en">English</option>
+        <option value="he">עברית</option>
+    </select>
       <div class="meme-editor-container">
         <div class="canvas-container">
           <canvas id="my-canvas" height="350" width="350"></canvas>
         </div>
 
         <div class="buttons-container">
-          <input
+          <input 
             class="text"
             type="text"
             id="text-input"
@@ -99,10 +103,11 @@
           <button class="line-down" onclick="onMoveLineDown()">⬇</button>
           <button class="line-up" onclick="onMoveLineUp()">⬆</button>
 
-          <button class="upload" onclick="onUploadImg()">Upload Image</button>
+          <button class="upload" data-trans="upload" onclick="onUploadImg()">Upload Image</button>
 
           <button class="download">
             <a
+            data-trans="download"
               href="#"
               class="btn"
               onclick="downloadImg(this)"
@@ -118,7 +123,7 @@
 
       <div class="gallery">
         <div class="keywords-container">
-          <label for="keywords">Search By Keyword:</label>
+          <label data-trans="keywords-tag" for="keywords">Search By Keyword:</label>
           <input
             class="keywords"
             onchange="renderFilteredImages()"
@@ -140,7 +145,7 @@
           </datalist>
         </div>
         <div class="clickable-search"></div>
-        <button class="flexible-button" onclick="onImFlexible()">
+        <button data-trans="flexible" class="flexible-button" onclick="onImFlexible()">
           I'm flexible
         </button>
 
@@ -148,17 +153,14 @@
       </div>
 
       <div class="about-modal modal-layout">
-        <button class="modal-close" onclick="toggleAboutModal()">Close</button>
-        <h2 class="modal-title">About this App</h2>
-        <img
-          alt=""
-        />
-
-        <p>
+        <button class="modal-close" data-trans="about-close" onclick="toggleAboutModal()">Close</button>
+        <h2 class="modal-title" data-trans="about-app">About this App</h2>
+        
+        <p data-trans="about-p1">
           Using this app is simple: click on a photo, add and style a funny text
           and then upload or download and share!
         </p>
-        <p>
+        <p data-trans="about-p2">
           This app was created by Yoni Lazarus as a project for Coding Academy
         </p>
       </div>
@@ -179,6 +181,7 @@
     <script src="js/services/storage.js"></script>
     <script src="js/services/util.js"></script>
     <script src="js/services/upload.js"></script>
+    <script src="js/services/i18n-service.js"></script>
     <script src="js/services/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/buttons-controller.js"></script>

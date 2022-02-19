@@ -28,6 +28,6 @@ button:hover {
   background-color: var(--themeclr);
 }
 
-/* datalist {
-  display: block;
-} */
+body.rtl {
+  direction: rtl;
+}

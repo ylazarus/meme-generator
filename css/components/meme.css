@@ -15,7 +15,7 @@
     "size         size        al          ac           ar"
     "font         font        sticker     color-label color-select"
     "upload        upload     facebook    download     download"
-    "p            p           p           p           p ";
+    "p            p           p           p           lang ";
 }
 
 .text {
@@ -100,7 +100,16 @@ p {
   grid-area: p;
 }
 
-.add-sticker{
+.add-sticker {
   grid-area: sticker;
   font-size: 1.5em;
+}
+
+.language-selector {
+  border-radius: 0.5em;
+  cursor: pointer;
+  margin-bottom: 1em;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
 }
