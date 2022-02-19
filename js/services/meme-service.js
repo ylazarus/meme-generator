@@ -27,7 +27,7 @@ var gMeme = {
     {
       id: makeID(5),
       txt: "",
-      size: 50,
+      size: 30,
       font: "Impact",
       align: "center",
       fill: "#ffffff",
@@ -46,7 +46,7 @@ function addLine() {
   var newLine = {
     id: makeID(5),
     txt: "",
-    size: 50,
+    size: 30,
     font: "Impact",
     align: "center",
     fill: "#ffffff",

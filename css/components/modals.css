@@ -5,8 +5,8 @@
   max-height: 80vh;
 }
 
-.memes-modal.modal-open{
-    display: flex;
+.memes-modal.modal-open {
+  display: flex;
 }
 
 .memes-container {
@@ -16,26 +16,25 @@
   justify-items: center;
 }
 
-.about-modal{
-    display: none;
+.about-modal {
+  display: none;
 }
 
 .about-modal.modal-open {
-  display: flex;  
+  display: flex;
 }
 
-.stickers-modal{
+.stickers-modal {
   display: none;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
   background-color: var(--themeclr);
-  /* color: black; */
-  /* font-size: 3em; */
   padding: 1.5em;
   width: 300px;
   height: 300px;
@@ -45,4 +44,13 @@
 
 .stickers-modal.modal-open {
   display: flex;
+}
+
+.stickers-container{
+  justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;}
+
+.stickers-modal .sticker{
+  font-size: 1.5em;
 }

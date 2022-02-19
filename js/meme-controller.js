@@ -11,6 +11,7 @@ function onInit() {
   addListeners();
   renderSearchWords();
   renderGallery();
+  renderStickers()
 }
 
 function renderMeme() {
@@ -60,7 +61,7 @@ function setBeginningOfLine(x, width, line) {
   else return x - width / 2;
 }
 
-function onRemoveSelectForSaveUpload() {
+function onRemoveSelect() {
   removeSelect();
   renderMeme();
 }

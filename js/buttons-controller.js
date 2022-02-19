@@ -6,13 +6,13 @@ const gSavedMemes = loadFromStorage(STORAGE_KEY)
   : [];
 
 function onUploadImg() {
-  onRemoveSelectForSaveUpload();
+  onRemoveSelect();
   setTimeout(uploadImg, 100)
   // uploadImg()
 }
 
 function downloadImg(elLink) {
-  onRemoveSelectForSaveUpload();
+  onRemoveSelect();
   var imgContent = gCanvas.toDataURL("image/jpeg");
   var imgForStorage = imgContent.replace(/^data:image\/(png|jpg);base64,/, "");
   gSavedMemes.push(imgForStorage);
@@ -30,7 +30,6 @@ function toggleStickersModal(){
 
 function toggleMemesModal() {
   document.querySelector(".memes-modal").classList.toggle("modal-open");
-  renderStickers()
 }
 
 function onOpenMemesModal() {
@@ -38,11 +37,12 @@ function onOpenMemesModal() {
   renderModal();
 }
 // start here sat nite
+// look at how asi fixed text size effecting buttons and button border radius
 function renderStickers(){
-  const stickers = ['😀','♥','🤬','😎','✌','😘','💀','😢','🤦','🍺','🌶','🍕','🚗','🎈','🎩']
+  const stickers = ['😀','♥','🤬','😎','✌','😘','💀','😢','🤦','🍺','🌶','🍕','🚗','🎈','🎩', '💚','💬','😂']
   const htmls = stickers.map((sticker) => {
-    return `<div class="sticker" 
-    onclick="onStickerSelect('${sticker}')">${sticker}</div>`;
+    return `<button class="sticker" 
+    onclick="onStickerSelect('${sticker}')">${sticker}</button>`;
   });
   document.querySelector(".stickers-container").innerHTML = htmls.join("");
 }
@@ -51,6 +51,14 @@ function renderModal() {
   const memes = loadFromStorage(STORAGE_KEY);
   document.querySelector(".about-modal").classList.toggle("modal-open");
 
+}
+
+function onStickerSelect(sticker){
+  addLine();
+  makeLineIdxTheLastLine();
+  setLineTxt(sticker);
+  renderCurrentSettings();
+  renderMeme();
 }
 
 function onAddText() {

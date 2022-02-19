@@ -40,11 +40,12 @@
 
 .line-down {
   grid-area: line-down;
-  width: 100%;
+  font-size: 1.3em;
 }
 
 .line-up {
   grid-area: line-up;
+  font-size: 1.3em;
 }
 
 .size {
