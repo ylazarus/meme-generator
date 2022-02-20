@@ -3,6 +3,7 @@
   text-align: center;
   width: 80vw;
   max-height: 80vh;
+  overflow-y: auto;
 }
 
 .memes-modal.modal-open {
