@@ -3,8 +3,8 @@
 }
 
 .buttons-container {
-  width: 350px;
-  height: 500px;
+  width: 325px;
+  height: 400px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -40,12 +40,12 @@
 
 .line-down {
   grid-area: line-down;
-  font-size: 1.3em;
+  font-size: 2em;
 }
 
 .line-up {
   grid-area: line-up;
-  font-size: 1.3em;
+  font-size: 2em;
 }
 
 .size {

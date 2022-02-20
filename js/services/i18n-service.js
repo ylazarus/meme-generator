@@ -9,7 +9,7 @@ var gTrans = {
   },
   'about': {
     en: "About",
-    he: "עודות",
+    he: "אודות",
   },
   'keywords-tag': {
     en: "Search By Keyword:",

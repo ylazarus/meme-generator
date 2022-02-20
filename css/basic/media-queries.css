@@ -10,7 +10,7 @@
     background-color: lightgray;
     justify-content: space-between;
     align-items: center;
-    height: 900px;
+    height: 800px;
   }
  
 }
@@ -20,7 +20,7 @@
     flex-direction: row;
     justify-content: space-between;
     background-color: lightgray;
-    max-width: 900px;
+    max-width: 750px;
     height: 500px;
     padding: 1em;
     align-items: center;

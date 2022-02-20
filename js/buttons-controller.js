@@ -14,6 +14,10 @@ function onUploadImg() {
 
 function downloadImg(elLink) {
   onRemoveSelect();
+  setTimeout(()=> doDownload(elLink), 100)
+}
+
+function doDownload(elLink){
   var imgContent = gCanvas.toDataURL("image/jpeg");
   var imgForStorage = imgContent.replace(/^data:image\/(png|jpg);base64,/, "");
   gSavedMemes.push(imgForStorage);
@@ -67,6 +71,10 @@ function renderStickers() {
 
 function renderModal() {
   const memes = loadFromStorage(STORAGE_KEY);
+  const htmls = memes.map((meme) => {
+        return `<div class="card"><img src="${meme}" alt=""></div>`;
+      })
+      document.querySelector(".memes-container").innerHTML = htmls.join("");
 }
 
 function onStickerSelect(sticker) {
