@@ -4,6 +4,8 @@
   grid-auto-rows: 180px;
   justify-items: center;
   gap: 1em;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
 }
 
 .card {
@@ -32,21 +34,21 @@
   margin-bottom: 1em;
 }
 
-.keywords-container input{
-  border-radius: .25em;
+.keywords-container input {
+  border-radius: 0.25em;
 }
 
-.clickable-search{
+.clickable-search {
   display: flex;
   flex-wrap: wrap;
   height: 200px;
   background-color: var(--themeclr);
-  color:white;
+  color: white;
   justify-content: space-evenly;
   align-content: center;
   margin-bottom: 1em;
 }
 
-.click-word{
+.click-word {
   cursor: pointer;
 }

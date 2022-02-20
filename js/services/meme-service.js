@@ -62,6 +62,7 @@ function addLine() {
 }
 
 function doImFlexible() {
+ 
   gMeme.lines[gMeme.lines.length - 1].txt = _getTextForFlexible();
   gMeme.lines[gMeme.lines.length - 1].size = getRandomIntInclusive(15, 40);
   gMeme.lines[gMeme.lines.length - 1].fill = getRandomColor();

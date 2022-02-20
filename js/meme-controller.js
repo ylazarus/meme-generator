@@ -11,13 +11,13 @@ function onInit() {
   addListeners();
   renderSearchWords();
   renderGallery();
-  renderStickers()
+  renderStickers();
 }
 
 function onSetLang(lang) {
   setLang(lang);
-  if (lang === 'he') document.body.classList.add('rtl') 
-  else document.body.classList.remove('rtl')
+  if (lang === "he") document.body.classList.add("rtl");
+  else document.body.classList.remove("rtl");
   doTrans();
   renderMeme();
 }
@@ -64,9 +64,15 @@ function drawRect(x, y, line) {
 }
 
 function setBeginningOfLine(x, width, line) {
-  if (line.align === "right") return x - width;
-  else if (line.align === "left") return x;
-  else return x - width / 2;
+  // if (line.align === "right") return x - width;
+  // else if (line.align === "left") return x;
+  // else return x - width / 2;
+
+  return line.align === "right"
+    ? x - width
+    : line.align === "left"
+    ? x
+    : x - width / 2;
 }
 
 function onRemoveSelect() {
@@ -79,7 +85,7 @@ function onDown(ev) {
   var lineID = textClicked(pos);
   if (lineID) {
     setClickedSelected(lineID);
-    setDrag(true)
+    setDrag(true);
   } else removeSelect();
   renderMeme();
   renderCurrentSettings();
@@ -87,7 +93,7 @@ function onDown(ev) {
 
 // add focuser on text input
 function textClicked(pos) {
-  var ID = null;
+  var currId = null;
   var { lines } = getMeme();
   lines.forEach((line) => {
     if (
@@ -96,25 +102,25 @@ function textClicked(pos) {
       pos.x >= line.beginning &&
       pos.x <= line.end
     ) {
-      ID = line.id;
+      currId = line.id;
       return;
     }
   });
-  return ID;
+  return currId;
 }
 
 function onUp() {
   setDrag(false);
-  }
+}
 
 function onMove(ev) {
   const meme = getMeme();
   if (meme.lines[meme.selectedLineIdx].isDrag) {
-      const pos = getEvPos(ev)
-      const dx = pos.x - meme.lines[meme.selectedLineIdx].x
-      const dy = pos.y - meme.lines[meme.selectedLineIdx].y
-      moveLine(dx, dy)
-      renderMeme()
+    const pos = getEvPos(ev);
+    const dx = pos.x - meme.lines[meme.selectedLineIdx].x;
+    const dy = pos.y - meme.lines[meme.selectedLineIdx].y;
+    moveLine(dx, dy);
+    renderMeme();
   }
 }
 

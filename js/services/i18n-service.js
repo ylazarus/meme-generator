@@ -35,6 +35,10 @@ var gTrans = {
     en: "Close",
     he: "סגור ",
   },
+  'add-text-placeholder': {
+    en: "Enter Text Here",
+    he: "להכניס טקסט כאן",
+  },
   'about-p1': {
     en: "Using this app is simple: click on a photo, add and style a funny text and then upload or download and share!",
     he: "השימוש באפליקציה הזאת פשוטה: להקליק על תמונה, להוסיף מילים מצחיקות ואז לשמור ולשטף",
@@ -52,6 +56,9 @@ function doTrans() {
         var transKey = el.dataset.trans
         var txt = _getTrans(transKey)
         el.innerText = txt
+        if(el.nodeName==='INPUT'){
+          el.placeholder=txt
+        }
     })
 }
 

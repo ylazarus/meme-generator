@@ -14,7 +14,7 @@ function onUploadImg() {
 
 function downloadImg(elLink) {
   onRemoveSelect();
-  setTimeout(()=> doDownload(elLink), 100)
+  setTimeout(doDownload, 100, elLink)
 }
 
 function doDownload(elLink){
